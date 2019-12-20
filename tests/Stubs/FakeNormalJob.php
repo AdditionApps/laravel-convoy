@@ -10,17 +10,17 @@ use Illuminate\Queue\SerializesModels;
 
 class FakeNormalJob implements ShouldQueue
 {
-	use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-	public $foo;
+    public $foo;
 
-	public function __construct($foo = 'bar')
-	{
-		$this->foo = $foo;
-	}
+    public function __construct($foo = 'bar')
+    {
+        $this->foo = $foo;
+    }
 
-	public function handle()
-	{
-		$this->delete();
-	}
+    public function handle()
+    {
+        $this->delete();
+    }
 }

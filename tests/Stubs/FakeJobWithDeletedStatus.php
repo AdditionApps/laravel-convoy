@@ -11,17 +11,17 @@ use Illuminate\Queue\SerializesModels;
 
 class FakeJobWithDeletedStatus implements ShouldQueue
 {
-	use JoinsConvoy, DispatchesToConvoy, InteractsWithQueue, Queueable, SerializesModels;
+    use JoinsConvoy, DispatchesToConvoy, InteractsWithQueue, Queueable, SerializesModels;
 
-	public $foo;
+    public $foo;
 
-	public function __construct($foo = 'bar')
-	{
-		$this->foo = $foo;
-	}
+    public function __construct($foo = 'bar')
+    {
+        $this->foo = $foo;
+    }
 
-	public function handle()
-	{
-		$this->delete();
-	}
+    public function handle()
+    {
+        $this->delete();
+    }
 }

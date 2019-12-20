@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Log;
 
 class FakeMail extends Mailable implements ShouldQueue
 {
-	use JoinsConvoy, Queueable, SerializesModels;
+    use JoinsConvoy, Queueable, SerializesModels;
 
-	public function build()
-	{
-		Log::info('Fake mail');
+    public function build()
+    {
+        Log::info('Fake mail');
 
-		return $this
-			->from('example@example.com')
-			->view('test-email');
-	}
+        return $this
+            ->from('example@example.com')
+            ->view('test-email');
+    }
 }

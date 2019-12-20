@@ -7,8 +7,8 @@ use Illuminate\Notifications\Notifiable;
 
 class FakeUser extends Model
 {
-	use Notifiable;
+    use Notifiable;
 
-	protected $guarded = [];
+    protected $guarded = [];
 
 }

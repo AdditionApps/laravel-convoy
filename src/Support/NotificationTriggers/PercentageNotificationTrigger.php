@@ -8,43 +8,43 @@ use AdditionApps\Convoy\DataTransferObjects\ConvoyData;
 class PercentageNotificationTrigger implements NotificationTriggerContract
 {
 
-	/** @var \AdditionApps\Convoy\DataTransferObjects\ConvoyData */
-	protected $convoy;
+    /** @var \AdditionApps\Convoy\DataTransferObjects\ConvoyData */
+    protected $convoy;
 
-	/** @var float */
-	protected $percentComplete;
+    /** @var float */
+    protected $percentComplete;
 
-	/** @var int */
-	protected $triggerValue;
+    /** @var int */
+    protected $triggerValue;
 
-	public function __construct(ConvoyData $convoy, int $triggerValue)
-	{
-		$this->convoy = $convoy;
-		$this->percentComplete = (float) $convoy->percentProcessed * 100;
-		$this->triggerValue = $triggerValue;
-	}
-	
-	public function isTriggered(): bool
-	{
-		if($this->beforeFirstTriggerPoint() || $this->approachingNextTriggerPoint()){
-			return false;
-		}
+    public function __construct(ConvoyData $convoy, int $triggerValue)
+    {
+        $this->convoy = $convoy;
+        $this->percentComplete = (float) $convoy->percentProcessed * 100;
+        $this->triggerValue = $triggerValue;
+    }
 
-		return true;
-	}
+    public function isTriggered(): bool
+    {
+        if ($this->beforeFirstTriggerPoint() || $this->approachingNextTriggerPoint()) {
+            return false;
+        }
 
-	private function beforeFirstTriggerPoint(): bool
-	{
-		return $this->percentComplete < $this->triggerValue;
-	}
+        return true;
+    }
 
-	private function approachingNextTriggerPoint(): bool
-	{
-		return ($this->calculateRemainder()) > (100 / $this->convoy->total);
-	}
+    private function beforeFirstTriggerPoint(): bool
+    {
+        return $this->percentComplete < $this->triggerValue;
+    }
 
-	private function calculateRemainder(): int
-	{
-		return $this->percentComplete % $this->triggerValue;
-	}
+    private function approachingNextTriggerPoint(): bool
+    {
+        return ($this->calculateRemainder()) > (100 / $this->convoy->total);
+    }
+
+    private function calculateRemainder(): int
+    {
+        return $this->percentComplete % $this->triggerValue;
+    }
 }

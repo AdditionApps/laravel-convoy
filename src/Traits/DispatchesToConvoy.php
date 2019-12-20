@@ -8,11 +8,11 @@ use Illuminate\Foundation\Bus\Dispatchable;
 trait DispatchesToConvoy
 {
 
-	use Dispatchable;
+    use Dispatchable;
 
-	public static function dispatch(): PendingConvoyDispatch
-	{
-		return new PendingConvoyDispatch(new static(...func_get_args()));
-	}
+    public static function dispatch(): PendingConvoyDispatch
+    {
+        return new PendingConvoyDispatch(new static(...func_get_args()));
+    }
 
 }

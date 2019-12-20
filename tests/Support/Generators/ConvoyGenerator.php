@@ -10,86 +10,86 @@ use Illuminate\Support\Str;
 
 class ConvoyGenerator
 {
-	use ConvertsAttributes;
+    use ConvertsAttributes;
 
-	public $id;
-	public $manifest = [];
-	public $config = [];
-	public $total;
-	public $totalComplete;
-	public $totalFailed;
-	public $start;
-	public $casts = [
-		'manifest' => 'json',
-		'config' => 'json',
-		'started_at' => 'date'
-	];
+    public $id;
+    public $manifest = [];
+    public $config = [];
+    public $total;
+    public $totalComplete;
+    public $totalFailed;
+    public $start;
+    public $casts = [
+        'manifest' => 'json',
+        'config' => 'json',
+        'started_at' => 'date'
+    ];
 
-	public function withId(string $id): self
-	{
-		$this->id = $id;
+    public function withId(string $id): self
+    {
+        $this->id = $id;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function withManifest(array $manifest): self
-	{
-		$this->manifest = $manifest;
+    public function withManifest(array $manifest): self
+    {
+        $this->manifest = $manifest;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function withConfig(array $config): self
-	{
-		$this->config = $config;
+    public function withConfig(array $config): self
+    {
+        $this->config = $config;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function withTotal(int $total): self
-	{
-		$this->total = $total;
+    public function withTotal(int $total): self
+    {
+        $this->total = $total;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function withTotalComplete(int $total): self
-	{
-		$this->totalComplete = $total;
+    public function withTotalComplete(int $total): self
+    {
+        $this->totalComplete = $total;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function withTotalFailed(int $total): self
-	{
-		$this->totalFailed = $total;
+    public function withTotalFailed(int $total): self
+    {
+        $this->totalFailed = $total;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function withStart(Carbon $date): self
-	{
-		$this->start = $date->toDateTimeString();
+    public function withStart(Carbon $date): self
+    {
+        $this->start = $date->toDateTimeString();
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function create(): ConvoyData
-	{
-		$attributes = [
-			'id' => $this->id ?? Str::uuid()->toString(),
-			'manifest' => json_encode($this->manifest),
-			'config' => json_encode($this->config),
-			'total' => $this->total ?? count($this->manifest),
-			'total_completed' => $this->totalComplete ?? 0,
-			'total_failed' => $this->totalFailed ?? 0,
-			'started_at' => $this->start ?? Carbon::now()->toDateTimeString(),
-		];
+    public function create(): ConvoyData
+    {
+        $attributes = [
+            'id' => $this->id ?? Str::uuid()->toString(),
+            'manifest' => json_encode($this->manifest),
+            'config' => json_encode($this->config),
+            'total' => $this->total ?? count($this->manifest),
+            'total_completed' => $this->totalComplete ?? 0,
+            'total_failed' => $this->totalFailed ?? 0,
+            'started_at' => $this->start ?? Carbon::now()->toDateTimeString(),
+        ];
 
-		DB::connection(config('convoy.database_connection'))
-			->table(config('convoy.database_name'))
-			->insert($attributes);
+        DB::connection(config('convoy.database_connection'))
+            ->table(config('convoy.database_name'))
+            ->insert($attributes);
 
-		return ConvoyData::from($this->castAttributes($attributes));
-	}
+        return ConvoyData::from($this->castAttributes($attributes));
+    }
 }

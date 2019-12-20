@@ -12,49 +12,49 @@ use TiMacDonald\Log\LogFake;
 class ConvoyJobsTest extends TestCase
 {
 
-	    /** @test */
+    /** @test */
     public function job_classes_are_tracked_through_the_queue_and_events_are_fired()
-	{
-		Log::swap(new LogFake);
+    {
+        Log::swap(new LogFake);
 
-    	Convoy::notifyEvery(1)
-			->onUpdateFire(FakeConvoyEvent::class)
-			->onCompleteFire(FakeConvoyEvent::class)
-			->track(function($convoy){
-				dispatch((new FakeJob('fizz'))->onConvoy($convoy));
-				FakeJob::dispatch('buzz')->onConvoy($convoy);
-			});
+        Convoy::notifyEvery(1)
+            ->onUpdateFire(FakeConvoyEvent::class)
+            ->onCompleteFire(FakeConvoyEvent::class)
+            ->track(function ($convoy) {
+                dispatch((new FakeJob('fizz'))->onConvoy($convoy));
+                FakeJob::dispatch('buzz')->onConvoy($convoy);
+            });
 
-    	// Jobs are processed
-		Log::assertLogged('info', function ($message, $context) {
-			return $message === 'Fake job: fizz';
-		});
+        // Jobs are processed
+        Log::assertLogged('info', function ($message, $context) {
+            return $message === 'Fake job: fizz';
+        });
 
-		Log::assertLogged('info', function ($message, $context) {
-			return $message === 'Fake job: buzz';
-		});
+        Log::assertLogged('info', function ($message, $context) {
+            return $message === 'Fake job: buzz';
+        });
 
-    	// First notification
-		Log::assertLogged('info', function ($message, $context) {
-			return $message === 1;
-		});
-		Log::assertLogged('warning', function ($message, $context) {
-			return $message === 0;
-		});
-		Log::assertLogged('notice', function ($message, $context) {
-			return $message === 1;
-		});
+        // First notification
+        Log::assertLogged('info', function ($message, $context) {
+            return $message === 1;
+        });
+        Log::assertLogged('warning', function ($message, $context) {
+            return $message === 0;
+        });
+        Log::assertLogged('notice', function ($message, $context) {
+            return $message === 1;
+        });
 
-		// Final (completed) notification
-		Log::assertLogged('info', function ($message, $context) {
-			return $message === 2;
-		});
-		Log::assertLogged('warning', function ($message, $context) {
-			return $message === 0;
-		});
-		Log::assertLogged('notice', function ($message, $context) {
-			return $message === 2;
-		});
+        // Final (completed) notification
+        Log::assertLogged('info', function ($message, $context) {
+            return $message === 2;
+        });
+        Log::assertLogged('warning', function ($message, $context) {
+            return $message === 0;
+        });
+        Log::assertLogged('notice', function ($message, $context) {
+            return $message === 2;
+        });
 
     }
 

@@ -12,107 +12,102 @@ use Illuminate\Support\Str;
 class Convoy implements ConvoyContract
 {
 
-	/** @var \AdditionApps\Convoy\Contracts\ManifestContract */
-	protected $manifest;
+    /** @var string */
+    public $id;
+    /** @var array */
+    public $members = [];
+    /** @var \AdditionApps\Convoy\Contracts\ManifestContract */
+    protected $manifest;
+    /** @var \AdditionApps\Convoy\Contracts\ConvoyRepositoryContract */
+    protected $convoyRepository;
+    /** @var array */
+    protected $config = [];
 
-	/** @var \AdditionApps\Convoy\Contracts\ConvoyRepositoryContract */
-	protected $convoyRepository;
+    /** @var int */
+    protected $notifyJobsProcessed;
 
-	/** @var string */
-	public $id;
+    /** @var int */
+    protected $notifyPercentageProcessed;
 
-	/** @var array */
-	public $members = [];
+    /** @var string */
+    protected $updatedEventClass;
 
-	/** @var array */
-	protected $config = [];
+    /** @var string */
+    protected $completedEventClass;
 
-	/** @var int */
-	protected $notifyJobsProcessed;
+    public function __construct(
+        ManifestContract $manifest,
+        ConvoyRepositoryContract $convoyRepository
+    ) {
+        $this->manifest = $manifest;
+        $this->convoyRepository = $convoyRepository;
+    }
 
-	/** @var int */
-	protected $notifyPercentageProcessed;
+    public function setId(string $id): ConvoyContract
+    {
+        $this->id = $id;
 
-	/** @var string */
-	protected $updatedEventClass;
+        return $this;
+    }
 
-	/** @var string */
-	protected $completedEventClass;
+    public function notifyEvery(int $jobs): ConvoyContract
+    {
+        $this->notifyJobsProcessed = $jobs;
 
-	public function __construct(
-		ManifestContract $manifest,
-		ConvoyRepositoryContract $convoyRepository
-	)
-	{
-		$this->manifest = $manifest;
-		$this->convoyRepository = $convoyRepository;
-	}
+        return $this;
+    }
 
-	public function setId(string $id): ConvoyContract
-	{
-		$this->id = $id;
+    public function notifyEveryPercent(int $percentage): ConvoyContract
+    {
+        $this->notifyPercentageProcessed = $percentage;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function notifyEvery(int $jobs): ConvoyContract
-	{
-		$this->notifyJobsProcessed = $jobs;
+    public function onUpdateFire($class): ConvoyContract
+    {
+        $this->updatedEventClass = $class;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function notifyEveryPercent(int $percentage): ConvoyContract
-	{
-		$this->notifyPercentageProcessed = $percentage;
+    public function onCompleteFire($class): ConvoyContract
+    {
+        $this->completedEventClass = $class;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function onUpdateFire($class): ConvoyContract
-	{
-		$this->updatedEventClass = $class;
+    public function track(callable $callback): ConvoyData
+    {
+        if (is_null($this->id)) {
+            $this->id = Str::uuid()->toString();
+        }
 
-		return $this;
-	}
+        $this->makeConfig();
+        $this->members = $this->manifest->make($this, $callback);
+        $convoyData = $this->convoyRepository->create(
+            $this->id, $this->members, $this->config
+        );
 
-	public function onCompleteFire($class): ConvoyContract
-	{
-		$this->completedEventClass = $class;
+        $callback($this);
 
-		return $this;
-	}
+        return $convoyData;
+    }
 
-	public function track(callable $callback): ConvoyData
-	{
-		if(is_null($this->id)){
-			$this->id = Str::uuid()->toString();
-		}
+    protected function makeConfig(): void
+    {
+        $this->pushToConfig('notify.jobs', $this->notifyJobsProcessed);
+        $this->pushToConfig('notify.percentage', $this->notifyPercentageProcessed);
+        $this->pushToConfig('events.updated', $this->updatedEventClass);
+        $this->pushToConfig('events.completed', $this->completedEventClass);
+    }
 
-		$this->makeConfig();
-		$this->members = $this->manifest->make($this, $callback);
-		$convoyData = $this->convoyRepository->create(
-			$this->id, $this->members, $this->config
-		);
-
-		$callback($this);
-
-		return $convoyData;
-	}
-
-	protected function makeConfig(): void
-	{
-		$this->pushToConfig('notify.jobs', $this->notifyJobsProcessed);
-		$this->pushToConfig('notify.percentage', $this->notifyPercentageProcessed);
-		$this->pushToConfig('events.updated', $this->updatedEventClass);
-		$this->pushToConfig('events.completed', $this->completedEventClass);
-	}
-
-	protected function pushToConfig($key, $value): void
-	{
-		if($value){
-			Arr::set($this->config, $key, $value);
-		}
-	}
+    protected function pushToConfig($key, $value): void
+    {
+        if ($value) {
+            Arr::set($this->config, $key, $value);
+        }
+    }
 
 }

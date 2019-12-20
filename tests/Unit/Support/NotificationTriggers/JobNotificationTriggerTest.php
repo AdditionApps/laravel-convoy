@@ -9,39 +9,39 @@ use Illuminate\Support\Carbon;
 
 class JobNotificationTriggerTest extends TestCase
 {
-	/** @test */
-	public function returns_true_when_number_of_jobs_processed_matches_trigger_value()
-	{
-		$convoy = ConvoyData::from([
-			'id' => 'foo',
-			'manifest' => [],
-			'config' => [],
-			'total' => 10,
-			'total_completed' => 3,
-			'total_failed' => 0,
-			'started_at' => Carbon::now()
-		]);
+    /** @test */
+    public function returns_true_when_number_of_jobs_processed_matches_trigger_value()
+    {
+        $convoy = ConvoyData::from([
+            'id' => 'foo',
+            'manifest' => [],
+            'config' => [],
+            'total' => 10,
+            'total_completed' => 3,
+            'total_failed' => 0,
+            'started_at' => Carbon::now()
+        ]);
 
-		$notification = new JobsNotificationTrigger($convoy, $triggerValue = 3);
+        $notification = new JobsNotificationTrigger($convoy, $triggerValue = 3);
 
-		$this->assertTrue($notification->isTriggered());
-	}
+        $this->assertTrue($notification->isTriggered());
+    }
 
-	/** @test */
-	public function returns_false_when_number_of_jobs_processed_matches_trigger_value()
-	{
-		$convoy = ConvoyData::from([
-			'id' => 'foo',
-			'manifest' => [],
-			'config' => [],
-			'total' => 10,
-			'total_completed' => 3,
-			'total_failed' => 1,
-			'started_at' => Carbon::now()
-		]);
+    /** @test */
+    public function returns_false_when_number_of_jobs_processed_matches_trigger_value()
+    {
+        $convoy = ConvoyData::from([
+            'id' => 'foo',
+            'manifest' => [],
+            'config' => [],
+            'total' => 10,
+            'total_completed' => 3,
+            'total_failed' => 1,
+            'started_at' => Carbon::now()
+        ]);
 
-		$notification = new JobsNotificationTrigger($convoy, $triggerValue = 3);
+        $notification = new JobsNotificationTrigger($convoy, $triggerValue = 3);
 
-		$this->assertFalse($notification->isTriggered());
-	}
+        $this->assertFalse($notification->isTriggered());
+    }
 }
