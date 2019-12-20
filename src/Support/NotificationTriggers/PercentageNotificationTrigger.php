@@ -7,7 +7,6 @@ use AdditionApps\Convoy\DataTransferObjects\ConvoyData;
 
 class PercentageNotificationTrigger implements NotificationTriggerContract
 {
-
     /** @var \AdditionApps\Convoy\DataTransferObjects\ConvoyData */
     protected $convoy;
 

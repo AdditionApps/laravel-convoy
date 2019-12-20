@@ -27,14 +27,14 @@ abstract class TestCase extends Orchestra
     {
         return [
             ConvoyServiceProvider::class,
-            ConsoleServiceProvider::class
+            ConsoleServiceProvider::class,
         ];
     }
 
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('view.paths', [
-            realpath(__DIR__.'/../tests/Support/Views')
+            realpath(__DIR__.'/../tests/Support/Views'),
         ]);
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
@@ -43,5 +43,4 @@ abstract class TestCase extends Orchestra
             'prefix' => '',
         ]);
     }
-
 }

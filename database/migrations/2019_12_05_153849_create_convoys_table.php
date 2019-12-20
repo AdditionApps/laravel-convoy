@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateConvoysTable extends Migration
 {
-
     public function __construct()
     {
         $this->connection = config('convoy.database_connection');

@@ -17,7 +17,6 @@ use Illuminate\Support\ServiceProvider;
 
 class ConvoyServiceProvider extends ServiceProvider
 {
-
     public function boot(): void
     {
         $this->publishConfig();
@@ -38,7 +37,7 @@ class ConvoyServiceProvider extends ServiceProvider
 
     protected function mergeConfig(): void
     {
-        $this->mergeConfigFrom(__DIR__."/../config/convoy.php", 'convoy');
+        $this->mergeConfigFrom(__DIR__.'/../config/convoy.php', 'convoy');
     }
 
     protected function registerMigrations(): void
@@ -71,7 +70,7 @@ class ConvoyServiceProvider extends ServiceProvider
 
         $repository = "AdditionApps\\Convoy\\Repositories\\{$driver}";
 
-        if (!class_exists($repository)) {
+        if (! class_exists($repository)) {
             throw ConvoyException::incorrectRepositoryDriver($driver);
         }
 
@@ -84,5 +83,4 @@ class ConvoyServiceProvider extends ServiceProvider
         $this->app->bind(ManifestContract::class, Manifest::class);
         $this->app->bind(MonitorContract::class, Monitor::class);
     }
-
 }

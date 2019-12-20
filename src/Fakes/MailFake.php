@@ -7,7 +7,6 @@ use Illuminate\Support\Testing\Fakes\MailFake as LaravelMailFake;
 
 class MailFake extends LaravelMailFake
 {
-
     public function queuedMailables(): array
     {
         return $this->queuedMailables;
@@ -15,7 +14,7 @@ class MailFake extends LaravelMailFake
 
     public function queue($view, $queue = null): void
     {
-        if (!$view instanceof Mailable) {
+        if (! $view instanceof Mailable) {
             return;
         }
 
@@ -26,6 +25,6 @@ class MailFake extends LaravelMailFake
 
     protected function shouldJoinConvoy($view): bool
     {
-        return !is_null($view->getConvoyId());
+        return ! is_null($view->getConvoyId());
     }
 }

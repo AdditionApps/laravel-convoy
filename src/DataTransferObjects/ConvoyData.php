@@ -47,7 +47,7 @@ class ConvoyData extends DataTransferObject
             'percentProcessed' => (float) round($percentProgress, 2),
             'totalCompleted' => (int) $record['total_completed'],
             'totalFailed' => (int) $record['total_failed'],
-            'startedAt' => $record['started_at']
+            'startedAt' => $record['started_at'],
         ]);
     }
 }

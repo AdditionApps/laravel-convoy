@@ -6,7 +6,6 @@ use AdditionApps\Convoy\Contracts\ConvoyContract;
 
 trait JoinsConvoy
 {
-
     protected $convoyId = null;
     protected $convoyMemberId = null;
 

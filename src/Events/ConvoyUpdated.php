@@ -6,7 +6,6 @@ use AdditionApps\Convoy\DataTransferObjects\ConvoyData;
 
 class ConvoyUpdated
 {
-
     /** @var \AdditionApps\Convoy\DataTransferObjects\ConvoyData */
     public $convoy;
 

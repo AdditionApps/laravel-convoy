@@ -12,7 +12,6 @@ use TiMacDonald\Log\LogFake;
 
 class ConvoyMailablesTest extends TestCase
 {
-
     /** @test */
     public function job_classes_are_tracked_through_the_queue_and_events_are_fired()
     {
@@ -35,7 +34,6 @@ class ConvoyMailablesTest extends TestCase
                             ->onConvoy($convoy)
                             ->onQueue('foo')
                     );
-
             });
 
         // Jobs are processed
@@ -64,7 +62,5 @@ class ConvoyMailablesTest extends TestCase
         Log::assertLogged('notice', function ($message, $context) {
             return $message === 2;
         });
-
     }
-
 }

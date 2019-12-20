@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Facade;
 
 class Convoy extends Facade
 {
-
     protected static function getFacadeAccessor(): string
     {
         return ConvoyContract::class;

@@ -6,7 +6,6 @@ use Illuminate\Support\Carbon;
 
 trait ConvertsAttributes
 {
-
     public function prepareAttributes($attributes = []): array
     {
         return collect($attributes)

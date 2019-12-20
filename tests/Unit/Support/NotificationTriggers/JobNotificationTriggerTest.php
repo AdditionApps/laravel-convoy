@@ -19,7 +19,7 @@ class JobNotificationTriggerTest extends TestCase
             'total' => 10,
             'total_completed' => 3,
             'total_failed' => 0,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         $notification = new JobsNotificationTrigger($convoy, $triggerValue = 3);
@@ -37,7 +37,7 @@ class JobNotificationTriggerTest extends TestCase
             'total' => 10,
             'total_completed' => 3,
             'total_failed' => 1,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         $notification = new JobsNotificationTrigger($convoy, $triggerValue = 3);

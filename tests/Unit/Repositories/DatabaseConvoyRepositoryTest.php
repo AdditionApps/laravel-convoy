@@ -78,14 +78,14 @@ class DatabaseConvoyRepositoryTest extends TestCase
         $this->repository->update('baz', [
             'manifest' => ['boo'],
             'total_completed' => 1,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         $this->assertDatabaseHas('convoys', [
             'id' => 'baz',
             'manifest' => json_encode(['boo']),
             'total_completed' => 1,
-            'started_at' => Carbon::now()->toDateTimeString()
+            'started_at' => Carbon::now()->toDateTimeString(),
         ]);
     }
 
@@ -141,7 +141,7 @@ class DatabaseConvoyRepositoryTest extends TestCase
             'id' => 'foo',
             'manifest' => json_encode(['bar', 'qux']),
             'total_completed' => 2,
-            'total_failed' => 1
+            'total_failed' => 1,
         ]);
     }
 
@@ -162,7 +162,7 @@ class DatabaseConvoyRepositoryTest extends TestCase
             'id' => 'foo',
             'manifest' => json_encode(['bar', 'qux']),
             'total_failed' => 2,
-            'total_completed' => 1
+            'total_completed' => 1,
         ]);
     }
 
@@ -193,7 +193,7 @@ class DatabaseConvoyRepositoryTest extends TestCase
         $this->assertDatabaseHas('convoys', [
             'id' => 'foo',
             'manifest' => json_encode(['bar', 'baz', 'qux']),
-            'total_completed' => 1
+            'total_completed' => 1,
         ]);
     }
 }

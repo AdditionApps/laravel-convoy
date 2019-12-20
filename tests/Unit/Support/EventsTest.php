@@ -42,8 +42,8 @@ class EventsTest extends TestCase
             ->withManifest(['foo', 'bar', 'baz'])
             ->withConfig([
                 'events' => [
-                    'completed' => FakeConvoyEvent::class
-                ]
+                    'completed' => FakeConvoyEvent::class,
+                ],
             ])
             ->withTotalComplete(3)
             ->create();
@@ -84,13 +84,13 @@ class EventsTest extends TestCase
                 'memberTwo',
                 'memberThree',
                 'memberFour',
-                'memberFive'
+                'memberFive',
             ])
             ->withConfig([
                 'notify' => [
                     'jobs' => 2,
-                    'percentage' => 20
-                ]
+                    'percentage' => 20,
+                ],
             ])
             ->withTotalComplete(2)
             ->create();
@@ -116,13 +116,13 @@ class EventsTest extends TestCase
                 'memberTwo',
                 'memberThree',
                 'memberFour',
-                'memberFive'
+                'memberFive',
             ])
             ->withConfig([
                 'notify' => [
                     'jobs' => 2,
-                    'percentage' => 30
-                ]
+                    'percentage' => 30,
+                ],
             ])
             ->withTotalComplete(2)
             ->create();
@@ -148,13 +148,13 @@ class EventsTest extends TestCase
                 'memberTwo',
                 'memberThree',
                 'memberFour',
-                'memberFive'
+                'memberFive',
             ])
             ->withConfig([
                 'notify' => [
                     'jobs' => 3,
-                    'percentage' => 20
-                ]
+                    'percentage' => 20,
+                ],
             ])
             ->withTotalComplete(2)
             ->create();
@@ -180,15 +180,15 @@ class EventsTest extends TestCase
                 'memberTwo',
                 'memberThree',
                 'memberFour',
-                'memberFive'
+                'memberFive',
             ])
             ->withConfig([
                 'notify' => [
                     'jobs' => 2,
                 ],
                 'events' => [
-                    'updated' => FakeConvoyEvent::class
-                ]
+                    'updated' => FakeConvoyEvent::class,
+                ],
             ])
             ->withTotalComplete(2)
             ->create();

@@ -22,7 +22,7 @@ class ConvoyGenerator
     public $casts = [
         'manifest' => 'json',
         'config' => 'json',
-        'started_at' => 'date'
+        'started_at' => 'date',
     ];
 
     public function withId(string $id): self
