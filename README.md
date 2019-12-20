@@ -8,7 +8,7 @@ Want to give users real-time updates on the progress of a set of queued tasks?
 
 Need to trigger an email or log some data once a set of jobs has completed?  
 
-Laravel Convoy offers a configurable, expressive API to group a set of queued jobs, mailables or notifications and then track this group as it is processed by your queue workers by listening for convoy events.
+Laravel Convoy offers a configurable, expressive API to group a set of queued jobs or mailables and then track this group as it is processed by your queue workers by listening for convoy events.
 
 ---
 
@@ -60,7 +60,7 @@ You can respond to these events however you wish using regular Laravel event lis
 
 ### Making ‘queueables’ convoy-ready
 
-Add the `JoinsConvoy` trait to your Jobs, Mailables and Notifications:
+Add the `JoinsConvoy` trait to your jobs and mailables:
 
 ```
 use AdditionApps\Convoy\Traits\JoinsConvoy;
