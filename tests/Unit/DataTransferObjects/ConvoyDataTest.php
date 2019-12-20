@@ -21,7 +21,7 @@ class ConvoyDataTest extends TestCase
             'total' => 3,
             'total_completed' => 1,
             'total_failed' => 0,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ];
 
         $convoyData = ConvoyData::from($record);

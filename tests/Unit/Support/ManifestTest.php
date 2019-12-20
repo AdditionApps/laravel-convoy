@@ -13,7 +13,6 @@ use TiMacDonald\Log\LogFake;
 
 class ManifestTest extends TestCase
 {
-
     /** @test */
     public function manifest_with_member_ids_is_returned_for_regular_jobs()
     {

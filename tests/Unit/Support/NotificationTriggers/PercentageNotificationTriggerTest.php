@@ -19,7 +19,7 @@ class PercentageNotificationTriggerTest extends TestCase
             'total' => 10,
             'total_completed' => 2,
             'total_failed' => 0,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         $notification = new PercentageNotificationTrigger($convoy, $triggerValue = 25);
@@ -37,7 +37,7 @@ class PercentageNotificationTriggerTest extends TestCase
             'total' => 10,
             'total_completed' => 4,
             'total_failed' => 0,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         $notification = new PercentageNotificationTrigger($convoy, $triggerValue = 25);
@@ -55,7 +55,7 @@ class PercentageNotificationTriggerTest extends TestCase
             'total' => 100,
             'total_completed' => 25,
             'total_failed' => 0,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         $notification = new PercentageNotificationTrigger($convoy, $triggerValue = 25);
@@ -73,7 +73,7 @@ class PercentageNotificationTriggerTest extends TestCase
             'total' => 10,
             'total_completed' => 3,
             'total_failed' => 0,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         $notification = new PercentageNotificationTrigger($convoy, $triggerValue = 25);
@@ -91,7 +91,7 @@ class PercentageNotificationTriggerTest extends TestCase
             'total' => 213,
             'total_completed' => 41,
             'total_failed' => 0,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         // Each job in convoy is 0.46948356807%

@@ -41,6 +41,6 @@ return [
 
     'database_connection' => env(
         'CONVOY_DATABASE_CONNECTION', config('database.default')
-    )
+    ),
 
 ];

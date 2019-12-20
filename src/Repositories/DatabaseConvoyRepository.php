@@ -21,7 +21,7 @@ class DatabaseConvoyRepository implements ConvoyRepositoryContract
     public $casts = [
         'manifest' => 'json',
         'config' => 'json',
-        'started_at' => 'date'
+        'started_at' => 'date',
     ];
 
     public function create(string $id, array $manifest, array $config): ConvoyData
@@ -33,7 +33,7 @@ class DatabaseConvoyRepository implements ConvoyRepositoryContract
             'total' => count($manifest),
             'total_completed' => 0,
             'total_failed' => 0,
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ]);
 
         DB::connection(config('convoy.database_connection'))
@@ -71,13 +71,15 @@ class DatabaseConvoyRepository implements ConvoyRepositoryContract
 
         if (is_null($convoy)) {
             DB::rollBack();
+
             return null;
         }
 
         $memberId = $this->locatedConvoyMember($convoy, $convoyMemberId);
 
-        if (!$memberId) {
+        if (! $memberId) {
             DB::rollBack();
+
             return null;
         }
 
@@ -169,5 +171,4 @@ class DatabaseConvoyRepository implements ConvoyRepositoryContract
             $convoyId, $convoyMemberId, self::JOB_FAILED
         );
     }
-
 }

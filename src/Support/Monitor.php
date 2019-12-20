@@ -12,7 +12,6 @@ use Illuminate\Support\Arr;
 
 class Monitor implements MonitorContract
 {
-
     /** @var \AdditionApps\Convoy\Contracts\ConvoyRepositoryContract */
     protected $convoyRepository;
 
@@ -53,15 +52,15 @@ class Monitor implements MonitorContract
         switch (true) {
             case $data instanceof SendQueuedMailable:
                 return $data->mailable;
-            default :
+            default:
                 return $data;
         }
     }
 
     protected function jobIsNotInConvoy($job): bool
     {
-        return !property_exists($job, 'convoyId')
-            || !property_exists($job, 'convoyMemberId')
+        return ! property_exists($job, 'convoyId')
+            || ! property_exists($job, 'convoyMemberId')
             || is_null($job->getConvoyId())
             || is_null($job->getConvoyMemberId());
     }
@@ -97,6 +96,4 @@ class Monitor implements MonitorContract
 
         $this->convoyEvents->fire($convoy);
     }
-
-
 }

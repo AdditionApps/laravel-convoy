@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 
 class Convoy implements ConvoyContract
 {
-
     /** @var string */
     public $id;
     /** @var array */
@@ -109,5 +108,4 @@ class Convoy implements ConvoyContract
             Arr::set($this->config, $key, $value);
         }
     }
-
 }

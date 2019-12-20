@@ -11,7 +11,6 @@ use Illuminate\Support\Arr;
 
 class Events
 {
-
     public function fire(ConvoyData $convoy): void
     {
         if ($this->allJobsProcessed($convoy)) {
@@ -61,7 +60,7 @@ class Events
         $className = ucfirst($type).'NotificationTrigger';
         $class = "AdditionApps\\Convoy\\Support\\NotificationTriggers\\{$className}";
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             ConvoyException::missingNotificationTriggerClass($class);
         }
 

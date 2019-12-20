@@ -7,7 +7,6 @@ use Illuminate\Support\Testing\Fakes\QueueFake as LaravelQueueFake;
 
 class QueueFake extends LaravelQueueFake
 {
-
     public function queuedJobs(): array
     {
         return $this->jobs;
@@ -31,7 +30,7 @@ class QueueFake extends LaravelQueueFake
 
     protected function shouldJoinConvoy($job): bool
     {
-        return !is_null($job->getConvoyId());
+        return ! is_null($job->getConvoyId());
     }
 
     protected function addToConvoy($job, $queue): void
@@ -41,6 +40,4 @@ class QueueFake extends LaravelQueueFake
             'queue' => $queue,
         ];
     }
-
-
 }

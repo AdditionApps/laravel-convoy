@@ -10,5 +10,4 @@ class FakeUser extends Model
     use Notifiable;
 
     protected $guarded = [];
-
 }

@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 
 class Manifest implements ManifestContract
 {
-
     /** @var @var \Illuminate\Queue\QueueManager */
     protected $originalQueue;
 

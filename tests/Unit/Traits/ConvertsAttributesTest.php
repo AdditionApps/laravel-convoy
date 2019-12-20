@@ -26,7 +26,7 @@ class ConvertsAttributesTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'id' => 123
+            'id' => 123,
         ], $result);
     }
 
@@ -38,7 +38,7 @@ class ConvertsAttributesTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'id' => 123
+            'id' => 123,
         ], $result);
     }
 
@@ -50,7 +50,7 @@ class ConvertsAttributesTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'manifest' => json_encode(['foo', 'bar'])
+            'manifest' => json_encode(['foo', 'bar']),
         ], $result);
     }
 
@@ -62,7 +62,7 @@ class ConvertsAttributesTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'manifest' => ['foo', 'bar']
+            'manifest' => ['foo', 'bar'],
         ], $result);
     }
 
@@ -76,7 +76,7 @@ class ConvertsAttributesTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'started_at' => Carbon::now()->toDateTimeString()
+            'started_at' => Carbon::now()->toDateTimeString(),
         ], $result);
     }
 
@@ -90,7 +90,7 @@ class ConvertsAttributesTest extends TestCase
         ]);
 
         $this->assertEquals([
-            'started_at' => Carbon::now()
+            'started_at' => Carbon::now(),
         ], $result);
     }
 }
@@ -99,7 +99,7 @@ class TestConvertsAttributesTest
 {
     public $casts = [
         'manifest' => 'json',
-        'started_at' => 'date'
+        'started_at' => 'date',
     ];
 
     use ConvertsAttributes;
