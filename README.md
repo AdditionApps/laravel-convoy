@@ -189,22 +189,22 @@ When responding to a convoy event, you will have access to a property on the eve
 #### `config`
 `array` - an array of configuration options for the convoy
 
-####`total`
+#### `total`
 `int` - the total number of items in the convoy prior to the convoy being launched
 
-####`totalProcessed` 
+#### `totalProcessed` 
 `int` - the total number of jobs that have been processed (either successfully or failed)
 
-####`percentProcessed` 
+#### `percentProcessed` 
 `float` - the percentage of jobs that have been processed  (either successfully or failed) expressed as a decimal 
 
-####`totalCompleted`
+#### `totalCompleted`
 `int` - the total number of jobs that have been successfully handled
 
-####`totalFailed`
+#### `totalFailed`
 `int` - the total number of jobs in the convoy marked as failed
 
-####`startedAt`
+#### `startedAt`
 `\Illuminate\Support\Carbon` - the date and time that the convoy started
 
 ---
