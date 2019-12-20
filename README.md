@@ -1,5 +1,7 @@
 ## Laravel Convoy
 
+Note - we're still kicking the tyres on this package and it's not recommended for use in production just yet.
+
 **Track the progress of related jobs on a queue.**
 
 Want to give users real-time updates on the progress of a set of queued tasks?  
@@ -177,23 +179,33 @@ Again, you are free to specify a custom event that should fire when the convoy i
 
 When responding to a convoy event, you will have access to a property on the event called `convoy` which will be an instance of `AdditionApps\Convoy\DataTransferObjects\ConvoyData`.  This object has the following public properties that you can use however makes sense for your application:
 
-`id` - (`string`) the UUID of the convoy - mostly for internal use.
+#### `id`
 
-`manifest` - (`\Illuminate\Support\Collection`) a collection of UUID for each ‘member’ of the convoy - mostly for internal use.
+`string` - the UUID of the convoy - mostly for internal use.
 
-`config` - (`array`) an array of configuration options for the convoy
+#### `manifest`
+`\Illuminate\Support\Collection` - a collection of UUID for each ‘member’ of the convoy - mostly for internal use.
 
-`total` - (`int`) the total number of items in the convoy prior to the convoy being launched
+#### `config`
+`array` - an array of configuration options for the convoy
 
-`totalProcessed` - (`int`) the total number of jobs that have been processed (either successfully or failed)
+####`total`
+`int` - the total number of items in the convoy prior to the convoy being launched
 
-`percentProcessed` - (`float`)  the percentage of jobs that have been processed  (either successfully or failed) expressed as a decimal 
+####`totalProcessed` 
+`int` - the total number of jobs that have been processed (either successfully or failed)
 
-`totalCompleted` - (`int`) the total number of jobs that have been successfully handled
+####`percentProcessed` 
+`float` - the percentage of jobs that have been processed  (either successfully or failed) expressed as a decimal 
 
-`totalFailed` - (`int`) the total number of jobs in the convoy marked as failed
+####`totalCompleted`
+`int` - the total number of jobs that have been successfully handled
 
-`startedAt` - (`\Illuminate\Support\Carbon`) the date and time that the convoy started
+####`totalFailed`
+`int` - the total number of jobs in the convoy marked as failed
+
+####`startedAt`
+`\Illuminate\Support\Carbon` - the date and time that the convoy started
 
 ---
 
