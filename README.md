@@ -25,7 +25,7 @@ The package will automatically register itself.
 To publish the config file to `config/convoy.php` run:
 
 ```
-php artisan vendor:publish -provider=“AdditionApps\Convoy\ConvoyServiceProvider”
+php artisan vendor:publish --provider=“AdditionApps\Convoy\ConvoyServiceProvider”
 ```
 
 ---
