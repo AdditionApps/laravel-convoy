@@ -1,0 +1,44 @@
+{
+    "name": "additionapps/laravel-convoy",
+    "description": "Track the progress of related jobs on a queue",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Addition",
+            "email": "info@addition.com.au"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0",
+        "ext-json": "*",
+        "illuminate/support": "~6.6.0",
+        "spatie/data-transfer-object": "^1.11"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.8",
+        "orchestra/database": "^4.0",
+        "orchestra/testbench": "^4.4",
+        "phpunit/phpunit": "~8.0",
+        "timacdonald/log-fake": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "AdditionApps\\Convoy\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AdditionApps\\Convoy\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AdditionApps\\Convoy\\ConvoyServiceProvider"
+            ]
+        }
+    }
+}
